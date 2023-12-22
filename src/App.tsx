@@ -1,26 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import StartScreen from "./components/StartScreen";
+import {useSelector} from "react-redux";
+import {useAppSelector} from "./app/hooks";
+import MainScreen from "./components/MainScreen";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App()
+{
+    const stage = useAppSelector(state => state.dialogueSlice.stage);
+    return (
+        <div className="App">
+            {stage===1 && <StartScreen/>}
+            {stage===2 && <MainScreen/>}
+        </div>
+    );
 }
 
 export default App;
