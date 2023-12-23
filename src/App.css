@@ -29,10 +29,9 @@
 }
 
 .chatwindow {
-height: 50vh;
-  width: 50%;
+height: 70vh;
+  width: 100%;
   margin-top: 100px;
-  align-self: center;
   border-color: #282c34;
   border-width: 1px;
 }

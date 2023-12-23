@@ -5,7 +5,6 @@ import {createPersonAction, setNameAction, switchScreenAction} from "../features
 const StartScreen = () => {
     const dispatch = useAppDispatch();
     const [persName, setName] = useState("");
-    const avatarLink : string = "https://www.shutterstock.com/image-vector/user-profile-icon-vector-avatar-600nw-2247726673.jpg";
 
     return (
         <div>
@@ -15,10 +14,10 @@ const StartScreen = () => {
             </div>
             <p></p>
             <input type="text" placeholder={'To start, enter the name'}
-            onChange={e=>()=>setName(e.target.value)}/>
+            onChange={(e)=>setName(e.target.value)}/>
             <button className={'startButton'} onClick={()=> {
-                dispatch(createPersonAction({persName, avatarLink}))
-                dispatch(switchScreenAction(2))
+                dispatch(createPersonAction({persName}));
+                dispatch(switchScreenAction(2));
             }}>Start</button>
         </div>
     );

@@ -1,37 +1,40 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {Person, State} from "../interfaces/interfaces";
+import {useAppDispatch} from "../app/hooks";
 
 const initialState: State = {
     stage: 1,
     currentPerson: {name: 'Enter name', avatarLink: ''},
-        personList: {
-            personList: [],
-            isVisible: false
-        }
+    personList: [],
 };
 
 const dialogueSlice = createSlice({
-name: 'person',
-initialState,
+    name: 'person',
+    initialState,
     reducers: {
-    setNameAction (state, action) {
-state.currentPerson = action.payload;
-    },
-        setAvatarAction(state, action){
-        state.currentPerson.avatarLink = action.payload;
+        setNameAction(state, action) {
+            state.currentPerson.name = action.payload;
         },
-        createPersonAction (state, action) {
-        let newPerson: Person = {
-            name: action.payload.persName,
-            avatarLink: action.payload.avatarLink
-        }
-        state.personList.personList.unshift(newPerson);
+        setAvatarAction(state, action) {
+            state.currentPerson.avatarLink = action.payload;
         },
-        switchScreenAction (state, action) {
-        state.stage = action.payload;
+        createPersonAction(state, action) {
+            const newPerson: Person = {
+                name: action.payload.persName,
+                avatarLink: ""
+            }
+            state.personList.unshift(newPerson);
+            console.log(newPerson.name);
+            state.currentPerson = {...newPerson};
+        },
+        switchPersonAction (state, action) {
+            state.currentPerson = action.payload;
+        },
+        switchScreenAction(state, action) {
+            state.stage = action.payload;
         }
     }
 })
 
-export const {createPersonAction, setNameAction, setAvatarAction, switchScreenAction} = dialogueSlice.actions;
+export const {createPersonAction, setNameAction, setAvatarAction, switchPersonAction, switchScreenAction} = dialogueSlice.actions;
 export default dialogueSlice.reducer;
